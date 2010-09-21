@@ -1123,3 +1123,63 @@ void test_ui(void)
 	ui_stop();
 	_delay_ms(4000);
 }
+
+void test_led_capacity(void)
+{
+	printf("Testing the sample logic for the capacity...\n");
+
+	unsigned short _sample_audio_ctr;								// Low-resulution high-frequency counter. Units: audio samples
+	unsigned _sample_togglet0,_sample_togglet1;
+	unsigned long capacity_block;							// Capacity of the MMC card in blocks
+	unsigned long firstfreeblock;							// First unused block
+
+	led_setmodestatic(0);
+	led_setmodestatic(1);
+	led_off(0);
+	led_off(1);
+	led_enact();
+
+
+	_sample_audio_ctr=0;
+	capacity_block=3842048L;
+	firstfreeblock=8192L;
+
+	while(firstfreeblock<capacity_block)
+	{
+		if(_sample_audio_ctr==0)				// Periodically recompute when to toggle the led - this is about every 8 seconds
+		{
+			_sample_togglet0 = (unsigned)(448L*firstfreeblock/(capacity_block>>4))+1023;
+			_sample_togglet1 = _sample_togglet0+8192;
+			printf("Block %lu/%lu -> toggle at %u %u\r",firstfreeblock,capacity_block,_sample_togglet0,_sample_togglet1);
+			firstfreeblock+=100000;
+		}	
+		
+	
+		if((_sample_audio_ctr&16383)==0)
+		{
+			led_toggle(0);
+			led_enact_nocli();
+		}
+		if((_sample_audio_ctr&16383)==_sample_togglet0)
+		{
+			led_toggle(0);
+			led_enact_nocli();
+		}
+		if((_sample_audio_ctr&16383)==8192)
+		{
+			led_toggle(1);
+			led_enact_nocli();
+		}
+		if((_sample_audio_ctr&16383)==_sample_togglet1)
+		{
+			led_toggle(1);
+			led_enact_nocli();
+		}
+		_sample_audio_ctr++;
+		_delay_us(100);
+	}
+}
+
+void test_i2cinttrigger(void)
+{
+}

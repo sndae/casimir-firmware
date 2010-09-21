@@ -560,6 +560,7 @@ void testradio_rx2(void)
 										0x94a0,0xc2ac,0xca81,0xc483,
 										0x9850,0xe000,0xc800,0xc400,
 										0xCA81};
+	unsigned short FIFO_data;
 	//unsigned char data;
 
 
@@ -589,8 +590,15 @@ void testradio_rx2(void)
 		while(1)
 		{
 			printf_P(PSTR("PINC: %02X PIND: %02X\r"),PINC,PIND);
+			mrf_command(0x0000);
+	  		FIFO_data=mrf_command(RXFIFOREG);
+			printf("RCV: %X\n",FIFO_data);
 			_delay_ms(100);
 		}
+
+
+		
+
 		mrf_select(1);
 		_delay_ms(100);
 

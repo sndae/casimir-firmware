@@ -39,4 +39,7 @@ void test_leds(void);
 
 void test_ui(void);
 
+void test_led_capacity(void);
+void test_i2cinttrigger(void);
+
 #endif
