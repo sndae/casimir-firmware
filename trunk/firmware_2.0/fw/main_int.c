@@ -114,6 +114,8 @@ void main_ui(void)
 		printf_P(PSTR("----------------------------------------\r"));
 		printf_P(PSTR("70. Test UI\r"));
 		printf_P(PSTR("72. Led under led manager control\r"));
+		printf_P(PSTR("73. Test led blink pattern for capacity\r"));
+		printf_P(PSTR("74. Test software I2C interrupt trigger\r"));
 		printf_P(PSTR("----------------------------------------\r"));
 		printf_P(PSTR("80. Launch the logging application\r"));
 		printf_P(PSTR("81. Off\r"));
@@ -391,6 +393,14 @@ void main_ui(void)
 			led_setmodeblink(0,1,19,1,0,1);			// LED 0 on low duty cycle
 			led_setmodestatic(1);
 			led_set(1,0);									// LED 1 off
+		}
+		if(strcmp(trimmedinput,"73")==0)
+		{
+			test_led_capacity();
+		}
+		if(strcmp(trimmedinput,"74")==0)
+		{
+			test_i2cinttrigger();
 		}
 		if(strcmp(trimmedinput,"80")==0)
 		{
