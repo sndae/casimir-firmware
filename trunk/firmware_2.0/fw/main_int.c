@@ -46,7 +46,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "global.h"
 #include "calibration.h"
 #include "test.h"
-#include "radio.h"
+#include "radio_test.h"
 #include "i2c.h"
 #include "sample.h"
 #include "radio.h"
@@ -97,11 +97,13 @@ void main_ui(void)
 		printf_P(PSTR("----------------------------------------\r"));
 		printf_P(PSTR("40. Print time\r"));
 		printf_P(PSTR("----------------------------------------\r"));
-		printf_P(PSTR("50. Test radio presence\r"));
-		printf_P(PSTR("51. Test radio reset\r"));
-		printf_P(PSTR("52. Test radio reset 2\r"));
+		//printf_P(PSTR("50. Test radio presence\r"));
+		//printf_P(PSTR("51. Test radio reset\r"));
+		//printf_P(PSTR("52. Test radio reset 2\r"));
 		printf_P(PSTR("53. Test radio RX\r"));
 		printf_P(PSTR("54. Test radio TX\r"));
+		printf_P(PSTR("55. Test radio RX with continous sensitivity variation\r"));
+		printf_P(PSTR("56. Test radio TX with continous power variation\r"));
 		printf_P(PSTR("----------------------------------------\r"));
 		printf_P(PSTR("60. Test timer 1\r"));
 		printf_P(PSTR("61. Start sampling\r"));
@@ -322,7 +324,7 @@ void main_ui(void)
 		{
 			test_time();
 		}
-		if(strcmp(trimmedinput,"50")==0)
+		/*if(strcmp(trimmedinput,"50")==0)
 		{
 			testradio_presence();
 		}
@@ -333,14 +335,22 @@ void main_ui(void)
 		if(strcmp(trimmedinput,"52")==0)
 		{
 			testradio_reset2();
-		}
+		}*/
 		if(strcmp(trimmedinput,"53")==0)
 		{
-			testradio_rx();
+			test_radio_continuousrx();
 		}
 		if(strcmp(trimmedinput,"54")==0)
 		{
-			testradio_tx();
+			test_radio_continuoustx();
+		}
+		if(strcmp(trimmedinput,"55")==0)
+		{
+			test_radio_continuousrxsensvar();
+		}
+		if(strcmp(trimmedinput,"56")==0)
+		{
+			test_radio_continuoustxpowervar();
 		}
 		if(strcmp(trimmedinput,"60")==0)
 		{
