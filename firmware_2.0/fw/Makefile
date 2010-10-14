@@ -73,6 +73,7 @@ SRC += fs.c
 SRC += pkt.c
 SRC += test.c
 SRC += radio.c
+SRC += radio_test.c
 SRC += sample.c
 SRC += helper2.c
 SRC += test_mmc.c

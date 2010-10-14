@@ -139,9 +139,9 @@ Radio connected:
 PortC.0 S_SCL         O    -
 PortC.1 S_SDA         I    -
 PortC.2 PB0_X_X0      O    0				// FSK/DATA/FFS#
-PortC.3 PB1_X_INT1    I    -
-PortC.4 X_IRQ         I    -
-PortC.5 X_INT0        I    -
+PortC.3 PB1_X_INT1    I    -				// DLCK/CFIL/FFIT
+PortC.4 X_IRQ         I    -				// IRQ#
+PortC.5 X_INT0        I    -				// INT#/VDI	
 PortC.6 Q0_VRegError  I    H
 PortC.7 Q1_X_X1       I    -
 
@@ -149,9 +149,15 @@ DDRC= 00000101b = 0x05
 PORTC=01000000b = 0x40
 */
 
-// DIR WRONG on X0?
-#define INIT_DDRC 0x01				
-#define INIT_PORTC 0x40
+// W/O RADIO
+//#define INIT_DDRC 0x01				
+//#define INIT_PORTC 0x40
+
+
+// W/ RADIO
+#define INIT_DDRC 	0x05				
+#define INIT_PORTC 	0x40
+
 
 // Alternative, wo radio, unused as output ground
 // DDRC 11111101 = 0x02
