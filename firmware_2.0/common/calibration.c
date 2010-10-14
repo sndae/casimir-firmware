@@ -77,7 +77,7 @@ void PrintCalibrationData(FILE *file)
 void Calibrate(FILE *file)
 {
 	
-	unsigned char i;
+	//unsigned char i;
 	
 	fprintf_P(file,PSTR("Calibration mode\r\n"));
 	
