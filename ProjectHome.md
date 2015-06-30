@@ -1,0 +1,2 @@
+This is the firmware for the CASIMIR sensor - a miniature body worn sensor used to monitor human activities and social interactions.
+This sensor include: orientation sensing (9DOF: accelerometer, magnetometer and gyroscope), audio recording, air pressure, temperature and light sensing, and radio-beacon-based proximity sensing.
